@@ -17,6 +17,18 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+
+     /*
+    |--------------------------------------------------------------------------
+    | Application-wide Timezone
+    |--------------------------------------------------------------------------
+    |
+    | Asia/Kolkata time-zone is used for the entire application.
+    |
+    */
+      
+      'timezone' => env('APP_TIMEZONE', 'UTC'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

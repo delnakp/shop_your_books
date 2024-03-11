@@ -15,8 +15,40 @@ return new class extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
+        
+        DB::table('product_categories')->insert(
+             [
+                [
+                    'name' => 'Fiction',
+                    'created_at' => now()
+                ],
+
+                [
+                    'name' => 'Medicine',
+                    'created_at' => now()
+                ],
+
+                [
+                    'name' => 'Art & Photography',
+                    'created_at' => now()
+                ],
+
+                [
+                    'name' => 'Biography & Memories',
+                    'created_at' => now()
+                ],
+
+                [
+                    'name' => 'Children & Teens',
+                    'created_at' => now()
+                ]
+             ]
+        );
+        
     }
 
     /**

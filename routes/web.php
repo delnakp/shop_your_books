@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +19,18 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
 Route::View('/', 'admin.index');
-Route::View('list-category', 'admin.category.list');
-Route::View('add-category', 'admin.category.add');
+
+    
+    Route::get('list-category', [CategoryController::class, 'index']);
+    Route::get('add-category',  [CategoryController::class, 'getAllCategory']);
+    Route::post('add-category', [SubCategoryController::class, 'add'])->name('admin.category.add');
+    Route::get('category/{subcategory}/edit', [SubCategoryController::class, 'edit']);
+    Route::put('/category/{subcatogories}/edit', [SubCategoryController::class, 'update'])->name('admin.category.edit');
+    Route::delete('/category/{category}', [CategoryController::class, 'delete'])->name('category.delete');
+    //product
+    Route::View('add-book', 'admin.product.add');
+    Route::post('/add-book', [ProductController::class, 'add'])->name('admin.product.add');
+    
+
+
