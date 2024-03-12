@@ -1,5 +1,5 @@
 <x-admin-layout>
-  <x-admin.header heading="Category" sub_heading="List Category" url="list-category"/>
+  <x-admin.header heading="Category" sub_heading="List Category" url="admin.category.list"/>
 
   @if(session('status'))
       <div class="alert alert-success">

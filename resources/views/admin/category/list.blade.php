@@ -2,7 +2,7 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Category</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active"><a href="{{url('add-category')}} ">New Category </a></li>
+            <li class="breadcrumb-item active"><a href="{{route('admin.category.add')}} ">New Category </a></li>
         </ol>
 
         @if(session('status'))
@@ -48,7 +48,7 @@
                                     <ul>
                                         @foreach ($category->subCategories as $subcategory)
                                             <li>{{ $subcategory->name }} 
-                                                <a href="{{url('category/'.$subcategory->id.'/edit') }}" >
+                                                <a href="{{url('admin/category/'.$subcategory->id.'/edit') }}" >
                                                    edit
                                                 </a>
                                             </li>
@@ -59,7 +59,7 @@
                             </td>
                             <td>{{$category->created_at}}</td>
                             <td>
-                                <form action="{{route('category.delete', $category->id)}}" method="POST" class="d-inline">
+                                <form action="{{route('admin.category.delete', $category->id)}}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>

@@ -19,18 +19,26 @@ use App\Http\Controllers\SubCategoryController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::View('/', 'admin.index');
 
-    
-    Route::get('list-category', [CategoryController::class, 'index']);
-    Route::get('add-category',  [CategoryController::class, 'getAllCategory']);
-    Route::post('add-category', [SubCategoryController::class, 'add'])->name('admin.category.add');
-    Route::get('category/{subcategory}/edit', [SubCategoryController::class, 'edit']);
-    Route::put('/category/{subcatogories}/edit', [SubCategoryController::class, 'update'])->name('admin.category.edit');
+Route::prefix('admin')->name('admin.')->group(function(){
+    Route::View('/', 'admin.index');
+    Route::get('/list-category', [CategoryController::class, 'index'])->name('category.list');
+    Route::get('/add-category',  [CategoryController::class, 'getAllCategory'])->name('category.add');
+    Route::post('/add-category', [SubCategoryController::class, 'add'])->name('admin.category.add');
+    Route::get('/category/{subcategory}/edit', [SubCategoryController::class, 'edit']);
+    Route::put('/category/{subcatogories}/edit', [SubCategoryController::class, 'update'])->name('category.edit');
     Route::delete('/category/{category}', [CategoryController::class, 'delete'])->name('category.delete');
+});
+    
+    //Route::get('list-category', [CategoryController::class, 'index']);
+    //Route::get('add-category',  [CategoryController::class, 'getAllCategory']);
+   // Route::post('add-category', [SubCategoryController::class, 'add'])->name('admin.category.add');
+    // Route::get('category/{subcategory}/edit', [SubCategoryController::class, 'edit']);
+    // Route::put('/category/{subcatogories}/edit', [SubCategoryController::class, 'update'])->name('admin.category.edit');
+    // Route::delete('/category/{category}', [CategoryController::class, 'delete'])->name('category.delete');
     //product
-    Route::View('add-book', 'admin.product.add');
-    Route::post('/add-book', [ProductController::class, 'add'])->name('admin.product.add');
+    // Route::View('add-book', 'admin.product.add');
+    // Route::post('/add-book', [ProductController::class, 'add'])->name('admin.product.add');
     
 
 
