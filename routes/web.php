@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SubCategoryController;
 
 /*
@@ -15,13 +16,19 @@ use App\Http\Controllers\SubCategoryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function(){  return Redirect::to('login'); });
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::middleware('guest')->group(function(){
+    
+    Route::View('/login', 'auth.login')->name('login');                 
+    Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::prefix('admin')->name('admin.')->group(function(){
-    Route::View('/', 'admin.index');
+});
+
+
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function(){
+    Route::View('/dashboard', 'admin.index');
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
     Route::get('/list-category', [CategoryController::class, 'index'])->name('category.list');
     Route::get('/add-category',  [CategoryController::class, 'getAllCategory'])->name('category.add');
     Route::post('/add-category', [SubCategoryController::class, 'add'])->name('admin.category.add');

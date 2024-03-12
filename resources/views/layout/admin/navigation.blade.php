@@ -18,8 +18,20 @@
                 <li><a class="dropdown-item" href="#!">Settings</a></li>
                 <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                 <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="#!">Logout</a></li>
+                <li><a class="dropdown-item" href="#!" id="logout">Logout</a></li>
+                <form action="{{ route('admin.logout') }}" method="POST" id="logoutForm">@csrf
+                
+                </form>
             </ul>
         </li>
     </ul>
 </nav>
+<script>
+    let logout = document.getElementById('logout');
+    let form =  document.getElementById('logoutForm');
+    logout.addEventListener('click',function()
+    {
+        form.submit();
+    });
+</script>
+    
