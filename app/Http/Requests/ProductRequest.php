@@ -22,11 +22,15 @@ class ProductRequest extends FormRequest
      * @return array<string, mixed>
      */
     public function rules()
-    {
+    {   
         return [
-            'name' => 'required',
-            'author' => 'required',
-            'publisher' => 'required'
+            'name' => 'required|string|unique:products,name',
+            'product_code' => 'required|Unique:products,product_code',
+            'author' => 'required|string',
+            'publisher' => 'required|string',
+            'discription' => 'required|string',
+            'release_date' => 'required|'
+            
         ];
     }
 }

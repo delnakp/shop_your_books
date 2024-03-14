@@ -6,11 +6,12 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 Dashboard
             </a>z
-            <div class="sb-sidenav-menu-heading">Product Management</div>
+            <div class="sb-sidenav-menu-heading">Catalog Management</div>
             <a class="nav-link" href="{{route('admin.category.list')}}">
-                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                Category
-            </a>
+                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>Category </a>
+                <a class="nav-link" href="{{route('admin.product.list')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> Books</a>
+
             <div class="sb-sidenav-menu-heading">Interface</div>
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>

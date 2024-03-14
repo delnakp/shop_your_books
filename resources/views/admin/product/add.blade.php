@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <x-admin.header heading="Books" sub_heading="List Books" url="list-books"/>
+    <x-admin.header heading="Books" sub_heading="List Books" url="admin.product.list"/>
     
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
@@ -13,67 +13,72 @@
       </li>
       
     </ul>
-    <form action="{{route('admin.product.add')}}" method="POST" class="row g-3">@csrf
-   
+    
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
         
+        <form action="{{route('admin.createProduct')}}" method="POST" class="row g-3">@csrf
     
         {{-- ----------------------------------------------------------- --}}
-        <div class="row">
+        <div class="row mt-4">
                 <div class="col-md-6">
                   <label for="name" class="form-label">Book Name</label>
                   <input type="text" class="form-control" name="name"  value="{{old('name')}}">
                   @error('name')
-                    <div class="alert alert-danger">{{$message}} </div>
+                    <span class="text-danger"> {{ $message }}</span>
                   @enderror
                 </div>
             
                 <div class="col-md-6">
-                  <label for="description" class="form-label">Description</label>
-                  <textarea name="description"  class="form-control">
-                    {{old('description')}}
-                  </textarea>
-                  @error('description')
-                    <div class="alert alert-danger">{{$message}} </div>
+                  <label for="name" class="form-label">Book Code</label>
+                  <input type="text" class="form-control" name="product_code"  value="{{old('product_code')}}">
+                  @error('product_code')
+                    <span class="text-danger"> {{ $message }}</span>
                   @enderror
                 </div>
         </div>
         {{-- ----------------------------------------------------------- --}}
         <div class="row">
+
+                <div class="col-md-6">
+                  <label for="discription" class="form-label">Discription</label>
+                  <textarea name="discription"  class="form-control">
+                    {{old('discription')}}
+                  </textarea>
+                  @error('discription')
+                    <span class="text-danger"> {{ $message }}</span>
+                  @enderror
+                </div>
               <div class="col-md-6">
                 <label for="author" class="form-label">Author</label>
                 <input type="text" class="form-control" name="author" value="{{old('author')}}">
                 @error('author')
-                    <div class="alert alert-danger">{{$message}} </div>
+                    <span class="text-danger"> {{ $message }}</span>
                 @enderror
               </div>
           
-              <div class="col-md-6">
-                <label for="publisher" class="form-label">Publisher</label>
-                <input type="text" class="form-control" name="publisher" value="{{old('publisher')}}">
-                @error('publisher')
-                    <div class="alert alert-danger">{{$message}} </div>
-                @enderror
-              </div>
+              
         </div>
         {{-- ----------------------------------------------------------- --}}
         <div class="row">
+
                   <div class="col-md-6">
-                    <label for="category" class="form-label">Category</label>
+                    <label for="publisher" class="form-label">Publisher</label>
+                    <input type="text" class="form-control" name="publisher" value="{{old('publisher')}}">
+                    @error('publisher')
+                        <span class="text-danger"> {{ $message }}</span>
+                    @enderror
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="category" class="form-label">Category > Sub-category</label>
                     <select name="category" class="form-control">
                       <option value="11">gjfig</option>
                       <option value="11">gjfig</option>
                     </select> 
                   </div>
               
-                  <div class="col-md-6">
-                    <label for="stock_status" class="form-label">Stock Status</label>
-                    <select name="stock_status" class="form-control">
-                      <option value="11">gjfig</option>
-                      <option value="11">gjfig</option>
-                  </select>
-                  </div>  
+                  
         </div>
           {{-- ----------------------------------------------------------- --}}
         <div class="row mt-2">
@@ -90,7 +95,8 @@
                   <input type="date" class="form-control" name="release_date">
                 </div>
         </div>
-    
+        <x-admin.primary-button> CREATE </x-admin.primary-button>
+        </form>
       </div> {{-- general--}}
       <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
             {{-- ----------------------------------------------------------- --}}
@@ -176,6 +182,6 @@
       </div>{{-- price--}}
       
     </div>{{-- myTabContent--}}
-    </form>
+    {{-- </form> --}}
 
   </x-admin-layout>

@@ -29,12 +29,21 @@ Route::middleware('guest')->group(function(){
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function(){
     Route::View('/dashboard', 'admin.index');
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+    //------------- CATEGORY   ---------------------------------------------------------------------------------
     Route::get('/list-category', [CategoryController::class, 'index'])->name('category.list');
     Route::get('/add-category',  [CategoryController::class, 'getAllCategory'])->name('category.add');
     Route::post('/add-category', [SubCategoryController::class, 'add'])->name('admin.category.add');
     Route::get('/category/{subcategory}/edit', [SubCategoryController::class, 'edit']);
     Route::put('/category/{subcatogories}/edit', [SubCategoryController::class, 'update'])->name('category.edit');
     Route::delete('/category/{category}', [CategoryController::class, 'delete'])->name('category.delete');
+
+    //-------------  BOOK          ----------------------------------------------------------------------------------
+
+    Route::get('/list-books', [ProductController::class, 'index'])->name('product.list');
+    Route::get('/add-book', [ProductController::class, 'create'])->name('product.add');
+    Route::post('/add-book', [ProductController::class, 'add'])->name('createProduct');
+    Route::get('/edit-book/{book}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/edit-book/{book}', [ProductController::class, 'update'])->name('updateProduct');
 });
     
     //Route::get('list-category', [CategoryController::class, 'index']);

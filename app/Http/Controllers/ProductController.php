@@ -17,25 +17,45 @@ class ProductController extends Controller
     {
        $this->productRepository = $productRepository;
     }
+      //return response()->json();
+    public function index()
+    {
+        $books = $this->productRepository->list();
+        $i = 0;
+        return view('admin.product.list', compact('books', 'i'));
+    }
+
+    public function create()
+    {
+        return view('admin.product.add'); 
+    }
 
     public function add(ProductRequest $request)
-    {
-        
-       $product = $this->productRepository->create($request);
+    {   
        
-       $discount = $this->productRepository->createDiscount($request, $product->id);
-
-       $moredetail = $this->productRepository->createMoreDetail($request, $product->id);
+        $product = $this->productRepository->store($request);
+       return redirect()->back()->with('status', 'Successfully created new book!');
        
-       $price = $this->productRepository->createPrice($request, $product->id);
+    //    $discount = $this->productRepository->createDiscount($request, $product->id);
 
-       $product_stock = $this->productRepository->createStock($request, $product->id);
+    //    $moredetail = $this->productRepository->createMoreDetail($request, $product->id);
+       
+    //    $price = $this->productRepository->createPrice($request, $product->id);
+
+    //    $product_stock = $this->productRepository->createStock($request, $product->id);
         
     }
-    public function edit(ProductCategory $category)
+
+    public function edit(Product $book)
     {
-        $categories = $this->subcategoryRepo->edit();
-        return response()->json($category);
-        return view('admin.category.edit', compact('subcategories', 'category'));
+       return view('admin.product.edit', compact('book'));
+    }
+
+    public function update(Product $book, Request $request)
+    { 
+         
+        $books= $this->productRepository->update($book, $request);
+
+       return redirect()->back()->with('status', 'updated successfully!');
     }
 }

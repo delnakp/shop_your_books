@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('sub_categories', function (Blueprint $table) {
-            $table->renameColumn('category_id', 'product_category_id');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('stock_status');
+            $table->string('product_code')->after('id')->unique();
+           
         });
     }
 
@@ -25,8 +27,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('sub_categories', function (Blueprint $table) {
-            $table->renameColumn('product_category_id', 'category_id');
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('stock_status');
+            $table->dropColumn('product_code');
+
         });
     }
 };
